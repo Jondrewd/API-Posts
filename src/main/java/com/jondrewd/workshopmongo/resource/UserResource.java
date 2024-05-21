@@ -60,5 +60,4 @@ public class UserResource {
         obj = userService.insert(obj);
         return ResponseEntity.noContent().build();
     }
-
 }
