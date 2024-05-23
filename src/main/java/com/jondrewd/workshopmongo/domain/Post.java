@@ -1,10 +1,15 @@
 package com.jondrewd.workshopmongo.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.jondrewd.workshopmongo.dto.AutorDTO;
+import com.jondrewd.workshopmongo.dto.CommentDTO;
 
 
 @Document
@@ -16,12 +21,14 @@ public class Post implements Serializable{
     private Date date;
     private String title;
     private String body;
-    private User autor;
+    private AutorDTO autor;
+
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public Post(){}
     
 
-    public Post(String id, Date date, String title, String body, User autor) {
+    public Post(String id, Date date, String title, String body, AutorDTO autor) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -74,15 +81,22 @@ public class Post implements Serializable{
     }
 
 
-    public User getAutor() {
+    public AutorDTO getAutor() {
         return autor;
     }
 
 
-    public void setAutor(User autor) {
+    public void setAutor(AutorDTO autor) {
         this.autor = autor;
     }
 
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
+    }
 
     @Override
     public int hashCode() {
